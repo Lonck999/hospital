@@ -23,14 +23,12 @@ request.interceptors.response.use(
           message: error.message,
         });
         break;
-
       case 500:
         ElMessage({
           type: "error",
           message: "服務器錯誤",
         });
         break;
-
       case 401:
         ElMessage({
           type: "error",

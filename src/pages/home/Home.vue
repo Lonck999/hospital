@@ -34,17 +34,19 @@ import { ref, onMounted } from 'vue'
 
 import { reqHospital } from '@/api/home/home.ts'
 
+import type { Content, HospitalResponseData } from '@/api/home/type.ts'
+
 let pageNow = ref<number>(1)
 let pageSize = ref<number>(10)
-let hasHospitalArr = ref([])
-let total = ref(0)
+let hasHospitalArr = ref<Content>([])
+let total = ref<number>(0)
 
 onMounted(() => {
     getHospitalInfo()
 })
 
 const getHospitalInfo = async () => {
-    let result: any = await reqHospital(pageNow.value, pageSize.value)
+    let result: HospitalResponseData = await reqHospital(pageNow.value, pageSize.value)
     if (result.status === 200) {
         hasHospitalArr.value = result.data.data.content
         total.value = result.data.data.totalElements

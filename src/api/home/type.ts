@@ -68,3 +68,28 @@ export interface HospitalResponseData extends ResponseData {
   empty: boolean;
   [propName: string]: any;
 }
+
+export interface HospitalArea {
+  id: number;
+  createTime: string;
+  updateTime: string;
+  isDeleted: number;
+  param: {};
+  parentId: number;
+  name: string;
+  value: string;
+  dictCode: string;
+  hasChildren: boolean;
+  [propName: string]: any;
+}
+
+export type HospitalAreaArr = HospitalArea[];
+
+export interface HospitalAreaResponseData extends ResponseData {
+  data: HospitalAreaArr;
+  [propName: string]: any;
+}
+
+
+export interface HospitalInfo extends ResponseData {
+    data: Content;

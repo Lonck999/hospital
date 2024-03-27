@@ -4,11 +4,12 @@
         <Search />
         <el-row gutter="20">
             <el-col :span="20">
-                <Sort />
-                <Region />
-                <div class="hospital">
+                <Sort @getArea="getArea" />
+                <Region @getRegion="getRegion" />
+                <div class="hospital" v-if="hasHospitalArr.length > 0">
                     <Card class="card" v-for="( item, index ) in hasHospitalArr" :key="index" :hospitalInfo="item" />
                 </div>
+                <el-empty v-else description="沒有任何醫院資訊" />
                 <el-pagination v-model:current-page="pageNow" v-model:page-size="pageSize" :page-sizes="[10, 20, 30, 40]"
                     :background="true" layout="prev, pager, next, jumper, ->, sizes, total" :total="total"
                     @current-change="currentChange" @size-change="sizeChange" />
@@ -40,13 +41,15 @@ let pageNow = ref<number>(1)
 let pageSize = ref<number>(10)
 let hasHospitalArr = ref<Content>([])
 let total = ref<number>(0)
+let hostype = ref<string>('')
+let districtCode = ref<string>('')
 
 onMounted(() => {
     getHospitalInfo()
 })
 
 const getHospitalInfo = async () => {
-    let result: HospitalResponseData = await reqHospital(pageNow.value, pageSize.value)
+    let result: HospitalResponseData = await reqHospital(pageNow.value, pageSize.value, hostype.value, districtCode.value)
     if (result.status === 200) {
         hasHospitalArr.value = result.data.data.content
         total.value = result.data.data.totalElements
@@ -59,6 +62,16 @@ const currentChange = () => {
 
 const sizeChange = () => {
     pageNow.value = 1
+    getHospitalInfo()
+}
+
+const getArea = (area: string) => {
+    hostype.value = area
+    getHospitalInfo()
+}
+
+const getRegion = (region: string) => {
+    districtCode.value = region
     getHospitalInfo()
 }
 </script>

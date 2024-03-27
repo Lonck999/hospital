@@ -1,7 +1,7 @@
 <template>
     <div class="top">
         <div class="content">
-            <div class="left">
+            <div class="left" @click="goHome">
                 <img src="../assets/logo.png" alt="">
                 <p>德霖網路預約掛號中心</p>
             </div>
@@ -14,7 +14,15 @@
 </template>
 
 <script setup lang='ts'>
+import { useRouter } from 'vue-router';
 
+let $router = useRouter()
+
+const goHome = () => {
+    $router.push({
+        path: '/home',
+    })
+}
 </script>
 
 <style scoped lang="scss">
@@ -58,7 +66,8 @@
             font-size: 1.2cqw;
             color: #939393;
 
-            .help, .login{
+            .help,
+            .login {
                 margin-right: 10px;
             }
         }

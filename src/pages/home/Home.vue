@@ -14,7 +14,9 @@
                     :background="true" layout="prev, pager, next, jumper, ->, sizes, total" :total="total"
                     @current-change="currentChange" @size-change="sizeChange" />
             </el-col>
-            <el-col :span="4">456</el-col>
+            <el-col :span="4">
+                <Tip />
+            </el-col>
         </el-row>
     </div>
 </template>
@@ -30,6 +32,8 @@ import Sort from './sort/Sort.vue'
 import Region from './region/Region.vue'
 // 醫院訊息
 import Card from './card/Card.vue'
+
+import Tip from './tip/Tip.vue'
 
 import { ref, onMounted } from 'vue'
 

@@ -31,7 +31,7 @@ let $router = useRouter()
 
 const goDetail = () => {
     $router.push({
-        path: '/hospital',
+        path: '/hospital/register',query: { hoscode:props.hospitalInfo.hoscode }
     })
 }
 

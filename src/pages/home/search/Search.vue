@@ -32,7 +32,7 @@ const fetchData = async (keyword: string, cd: any) => {
 
 const goDetail = (item: any) => {
     $router.push({
-        path: '/hospital',
+        path: '/hospital/register',query: { hoscode:item.hoscode }
     })
 }
 
